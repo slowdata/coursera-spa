@@ -14,12 +14,12 @@
    <div class="container" ng-controller="LunchCheckController">
      <h1>Lunch Checker</h1>
 
-         <div class="form-group">
+         <div class="form-group has-{{infoInput}}">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control"
              ng-model="lunch">
-             <p class="help-block">This app do NOT consider and empty item, i.e., , , as an item towards to the count.</p>
+             <p class="help-block">This app do NOT consider and empty item, i.e., <kbd>, ,</kbd> as an item towards to the count.</p>
          </div>
          <div class="form-group">
              <button class="btn btn-default"
@@ -27,7 +27,7 @@
          </div>
          <div class="form-group message">
            <!-- Your message can go here. -->
-           {{message}}
+           <p class="text-{{msgColor}}">{{message}}</p>
          </div>
    </div>
 

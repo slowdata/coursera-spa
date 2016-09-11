@@ -14,30 +14,34 @@
 
     };
 
-
-  }
-
-  function countLunch(string) {
-    if (string === undefined || string.trim() == "")
-      return 'Please enter data first';
-
-    var food = string.trim().split(",");
-    var total = 0;
-
-    food.forEach(function (str) {
-      if (str.trim() !== "") {
-        console.log(str);
-        total++;
+    function countLunch(string) {
+      if (string === undefined || string.trim() == "") {
+          $scope.infoInput = 'error';
+          $scope.msgColor = 'danger';
+          return 'Please enter data first';
       }
-    });
 
-    if (total <= 3)
-      return 'Enjoy!';
+      var food = string.trim().split(",");
+      var total = 0;
 
-    else return 'Too much!';
+      food.forEach(function (str) {
+        if (str.trim() !== "") {
+          total++;
+        }
+      });
+
+      $scope.msgColor = 'success';
+      $scope.infoInput = 'success';
+
+      if (total <= 3)
+        return 'Enjoy!';
+
+      return 'Too much!';
 
 
 
+    }
   }
+
 
 })();
