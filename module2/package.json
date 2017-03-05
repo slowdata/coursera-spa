@@ -1,0 +1,12 @@
+{
+  "name": "coursera_assignment_2",
+  "version": "0.0.1",
+  "description": "Assignement 2 of Coursera SPA course",
+  "main": "app.js",
+  "scripts": {
+    "start": "browser-sync start --server --directory --files '**/*'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RD",
+  "license": "ISC"
+}
