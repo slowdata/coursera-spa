@@ -1,0 +1,16 @@
+{
+  "name": "assignment3",
+  "version": "1.0.0",
+  "description": "Coursera SPA assignment 3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server --directory --files **\\*"
+  },
+  "keywords": [
+    "coursera",
+    "spa"
+  ],
+  "author": "RD",
+  "license": "ISC"
+}
