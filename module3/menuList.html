@@ -1,5 +1,8 @@
-<ul>
-    <li ng-repeat= "item in Ctrl.found">
-        {{ item.short_name}} ; {{ item_name }}
-    </li>
-</ul>
+<div class=row>
+    <ul class="col-xs-12" class="list-group">
+        <li ng-repeat= "item in list.foundItems" class="list-group-item">
+            {{ item.name }} ; {{ item.short_name}} ; {{ item.description}}
+            <button class="btn btn-default">Don't want this one!</button>
+        </li>
+    </ul>
+</div>

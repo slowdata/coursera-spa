@@ -11,21 +11,34 @@
     function FoundItemsDirective () {
         var ddo = {
             templateUrl: 'menuList.html',
-            restrict: 'A',
+            restrict: 'E',
             scope: {
                 foundItems: '<'
-            }
+            },
+            controller: MenuListDirectiveController,
+            controllerAs: 'list',
+            bindToController: true
+
         };
 
         return ddo;
     }
 
+    function MenuListDirectiveController() {
+        var list = this;
+
+
+    }
 
     NarrowItDownController.$inject = ['MenuSearchService']
     function NarrowItDownController(MenuSearchService) {
         var Ctrl = this;
 
+        Ctrl.searchTerm = '';
+
         Ctrl.getMenuItems = function(searchTerm) {
+            Ctrl.found = '';
+            
             var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
             promise.then(function(response){
                 Ctrl.found = response;
@@ -46,13 +59,12 @@
         var service = this;
 
         service.getMatchedMenuItems = function(searchTerm) {
-
             var response = $http({
                 method: "GET",
                 url: URL
             }).then(function (result) {
                 var foundItems = result.data.menu_items.filter(function(item) {
-                    return (item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
+                    return (item.description.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1)
                 });
                 return foundItems;
             });
