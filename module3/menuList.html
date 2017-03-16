@@ -1,8 +1,35 @@
-<div class=row>
+<!--<div class=row>
     <ul class="col-xs-12" class="list-group">
         <li ng-repeat= "item in list.foundItems" class="list-group-item">
             {{ item.name }} ; {{ item.short_name}} ; {{ item.description}}
-            <button class="btn btn-default">Don't want this one!</button>
+            <button class="btn btn-default" 
+            ng-click="list.onRemove({index: $index})">Don't want this one!</button>
         </li>
     </ul>
+</div>-->
+
+
+<div class="row">
+    <table class="table table-striped" ng-if="list.show()">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Short Name</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tbody>
+                <tr ng-repeat="item in list.foundItems">
+                    <th scope="row">{{ $index +1 }}</th>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.short_name}}</td>
+                    <td>{{ item.description}}</td>
+                    <td><button class="btn btn-default" 
+                ng-click="list.onRemove({index: $index})">Don't want this one!</button>
+            </td>
+                </tr>
+            </tbody>
+        </thead>
+    </table>
 </div>

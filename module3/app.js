@@ -13,7 +13,8 @@
             templateUrl: 'menuList.html',
             restrict: 'E',
             scope: {
-                foundItems: '<'
+                foundItems: '<',
+                onRemove: '&'
             },
             controller: MenuListDirectiveController,
             controllerAs: 'list',
@@ -27,6 +28,18 @@
     function MenuListDirectiveController() {
         var list = this;
 
+        list.show = function() {
+            if (list.foundItems !== undefined)
+                if (list.foundItems.length > 0)
+                    return true;
+            return false;
+
+
+        }
+
+        if (list.foundItems !== undefined)
+            if (list.foundItems.length > 0)
+                list.show = true;
 
     }
 
@@ -38,16 +51,33 @@
 
         Ctrl.getMenuItems = function(searchTerm) {
             Ctrl.found = '';
-            
-            var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
-            promise.then(function(response){
-                Ctrl.found = response;
-                console.log(Ctrl.found);
-            })
-            .catch(function(error){
-                console.log("Error", error);
-            });
+            Ctrl.show = false;
 
+            if (searchTerm.trim() !== "") {
+                var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+                promise.then(function(response){
+                    if (response.length > 0)
+                        Ctrl.found = response;
+                    else
+                        Ctrl.show = true;
+                    
+                })
+                .catch(function(error){
+                    console.log("Error", error);
+                });
+            } else {
+                Ctrl.show = true;
+            }
+
+        };
+
+        Ctrl.removeItem = function (index) {
+            console.log("this do onRemove: ", this);
+            if (Ctrl.found.length > 0) {
+                Ctrl.found.splice(index, 1);
+            }
+
+                
         };
         
 
@@ -70,8 +100,8 @@
             });
 
             return response;
-
         };
+        
     }
 
 
