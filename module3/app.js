@@ -37,10 +37,6 @@
 
         }
 
-        if (list.foundItems !== undefined)
-            if (list.foundItems.length > 0)
-                list.show = true;
-
     }
 
     NarrowItDownController.$inject = ['MenuSearchService']
