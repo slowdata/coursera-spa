@@ -27,6 +27,12 @@
 
     function MenuListDirectiveLink(scope, element, attr, controller) {
         console.log(scope, element, attr, controller);
+
+        scope.$watch('list.effect', function(newValue, oldValue){
+            console.log('newValue: ', newValue);
+            console.log('oldValue: ', oldValue);
+        })
+
     }
 
     function MenuListDirectiveController() {
@@ -38,7 +44,6 @@
                     return true;
             return false;
 
-
         }
 
     }
@@ -49,32 +54,37 @@
 
         Ctrl.searchTerm = '';
 
+        Ctrl.effect = true;
+
         Ctrl.getMenuItems = function(searchTerm) {
-            Ctrl.found = '';
-            Ctrl.show = false;
+            Ctrl.foundItems = '';
+            Ctrl.show = true;
 
             if (searchTerm.trim() !== "") {
                 var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
                 promise.then(function(response){
                     if (response.length > 0)
-                        Ctrl.found = response;
+                        Ctrl.foundItems = response;
                     else
                         Ctrl.show = true;
+                    
                     
                 })
                 .catch(function(error){
                     console.log("Error", error);
+                    Ctrl.effect = false;
                 });
             } else {
                 Ctrl.show = true;
+                Ctrl.effect = false;
             }
 
         };
 
         Ctrl.removeItem = function (index) {
             console.log("this do onRemove: ", this);
-            if (Ctrl.found.length > 0) {
-                Ctrl.found.splice(index, 1);
+            if (Ctrl.foundItems.length > 0) {
+                Ctrl.foundItems.splice(index, 1);
             }
 
                 
