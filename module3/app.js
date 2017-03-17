@@ -18,11 +18,15 @@
             },
             controller: MenuListDirectiveController,
             controllerAs: 'list',
-            bindToController: true
-
+            bindToController: true,
+            link: MenuListDirectiveLink
         };
 
         return ddo;
+    }
+
+    function MenuListDirectiveLink(scope, element, attr, controller) {
+        console.log(scope, element, attr, controller);
     }
 
     function MenuListDirectiveController() {
