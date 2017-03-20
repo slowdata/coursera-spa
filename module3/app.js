@@ -28,18 +28,18 @@
     function MenuListDirectiveLink(scope, element, attr, controller) {
         console.log(scope, element, attr, controller);
 
-        scope.$watch('list.foundItems', function(newValue, oldValue){
-            console.log('newValue: ', newValue);
-            console.log('oldValue: ', oldValue);
+        // scope.$watch('list.foundItems', function(newValue, oldValue){
+        //     console.log('newValue: ', newValue);
+        //     console.log('oldValue: ', oldValue);
 
-            if (!newValue) {
-                var el = element.find('span');
-                el.css('display', 'block');
-            } else {
-                var el = element.find('span');
-                el.css('display', 'none');
-            }
-        });
+        //     if (!newValue) {
+        //         var el = element.find('span');
+        //         el.css('display', 'block');
+        //     } else {
+        //         var el = element.find('span');
+        //         el.css('display', 'none');
+        //     }
+        // });
 
 
     }
@@ -52,7 +52,6 @@
                 if (list.foundItems.length > 0)
                     return true;
             return false;
-
         }
 
     }
@@ -64,19 +63,16 @@
         Ctrl.searchTerm = '';
 
         Ctrl.getMenuItems = function(searchTerm) {
-            Ctrl.show = true;
-
-            Ctrl.foundItems = '';
+            Ctrl.found = '';
+            Ctrl.show = false;
 
             if (searchTerm.trim() !== "") {
                 var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
                 promise.then(function(response){
                     if (response.length > 0)
-                        Ctrl.foundItems = response;
+                        Ctrl.found = response;
                     else
                         Ctrl.show = true;
-                    
-                    
                 })
                 .catch(function(error){
                     console.log("Error", error);
@@ -88,11 +84,8 @@
         };
 
         Ctrl.removeItem = function (index) {
-            console.log("this do onRemove: ", this);
-            if (Ctrl.foundItems.length > 0) {
-                Ctrl.foundItems.splice(index, 1);
-            }
-
+            if (Ctrl.found.length > 0)
+                Ctrl.found.splice(index, 1);
                 
         };
         
