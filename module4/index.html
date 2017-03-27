@@ -6,12 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ricardo Dias - Coursera SPA Assignment 4</title>
 </head>
-<body>
+<body ng-app="MenuApp">
     <h1>Welcome to our Restaurant</h1>
 
+    <ui-view></ui-view>
 
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-ui-router.min.js"></script>
 
-    <script src="lib\angular.min.js"></script>
-    <script src="angular-ui-router.min.js"></script>
+    <!--my modules-->
+    <script src="src/menulist/menuapp.module.js"></script>
+    <script src="src/menulist/data.module.js"></script>
+
+    <!--routes-->
+    <script src="src/routes.js"></script>
+    
+    
+    <!--MenuList artifacts-->
+    <script src="src/menulist/categories.component.js"></script>
+    <script src="src/menulist/menulist.controller.js"></script>
+
+    <!--Items artifacts-->
+    <script src="src/menulist/items.controller.js"></script>
+    <script src="src/menulist/items.component.js"></script>
+    
+    <!--data artifacts-->
+    <script src="src/menulist/menudata.service.js"></script>
+    
 </body>
 </html>
