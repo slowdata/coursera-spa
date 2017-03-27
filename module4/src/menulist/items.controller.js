@@ -10,8 +10,6 @@
             var itemsCtrl = this;
 
             itemsCtrl.list = items;
-
-            console.log("itemsCtrl", itemsCtrl.list);
         }
     }
 )();
