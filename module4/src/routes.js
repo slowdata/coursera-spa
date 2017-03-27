@@ -35,7 +35,7 @@
             // Categories Items page
             .state('items', {
                 url: '/items/{itemId}',
-                templateUrl: '/src/menulist/templates/items.template.html',
+                templateUrl: 'src/menulist/templates/items.template.html',
                 controller: 'ItemsController as itemsCtrl',
                 resolve: {
                     items: ['$stateParams', 'MenuDataService', 
