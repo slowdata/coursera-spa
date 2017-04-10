@@ -1,0 +1,13 @@
+{
+  "name": "module5",
+  "version": "1.0.0",
+  "description": "Restaurant front-end implementation in AngularJS for David Chu's China Bistro.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browser-sync start --server --directory --files='**/*'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
