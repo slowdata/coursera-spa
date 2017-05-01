@@ -36,10 +36,18 @@ function routeConfig ($stateProvider) {
       controller: 'MenuItemsController',
       controllerAs: 'menuItemsCtrl',
       resolve: {
-        menuItems: ['$stateParams','MenuService', function ($stateParams, MenuService) {
-          return MenuService.getMenuItems($stateParams.category);
+        menuItems: ['$stateParams','MenuService', 
+          function ($stateParams, MenuService) {
+            return MenuService.getMenuItems($stateParams.category);
         }]
       }
+    })
+    .state('public.signup', {
+      url: '/signup',
+      templateUrl: 'src/public/signup/signup.html',
+      controller: 'SignupController',
+      controllerAs: 'signupCtrl',
+
     });
 }
 })();
