@@ -7,14 +7,19 @@
     SignupController.$inject = ['SignupService']
     function SignupController(SignupService) {
         var $ctrl = this;
-        
-        $ctrl.submit = function (form){
-            console.log("Este é o submit", form, this.user);
 
-            var tmp = SignupService.getFavDish(this.user.favDish)
+        $ctrl.submit = function (form){
+            $ctrl.res = false;
+            $ctrl.errorShortName = $ctrl.errorShortName ? false : $ctrl.errorShortName;
+
+            console.log("Este é o submit", $ctrl.user);
+
+            SignupService.getFavDish(this.user.favDish)
             .then(function(res) {
-                console.dir(res);
-                
+                SignupService.setUser($ctrl.user);
+                $ctrl.res = true;
+            }).catch(function(err){
+                $ctrl.errorShortName = true;
             });
             
         }
